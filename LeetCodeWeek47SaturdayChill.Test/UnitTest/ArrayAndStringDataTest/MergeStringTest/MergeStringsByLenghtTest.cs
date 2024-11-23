@@ -1,7 +1,9 @@
 ﻿using FluentAssertions;
-using LeetCodeWeek47SaturdayChill.Model;
-using LeetCodeWeek47SaturdayChill.Domain.Entities;
+using LeetCodeWeek47SaturdayChill.Application.MergeWordService;
+using LeetCodeWeek47SaturdayChill.Application.Commands;
 using Xunit;
+using LeetCodeWeek47SaturdayChill.Application.Interfaces;
+
 
 namespace LeetCodeWeek47SaturdayChill.Test.UnitTest.ArrayAndStringDataTest.MergeStringTest
 {
@@ -10,7 +12,7 @@ namespace LeetCodeWeek47SaturdayChill.Test.UnitTest.ArrayAndStringDataTest.Merge
     If a string is longer than the other, append the additional letters onto the end of the merged string.
     Return the merged string.
 
-       Example 1: - Done
+       Example 1: 
        
        Input: word1 = "abc", word2 = "pqr"
        Output: "apbqcr"
@@ -40,27 +42,27 @@ namespace LeetCodeWeek47SaturdayChill.Test.UnitTest.ArrayAndStringDataTest.Merge
      */
     public class MergeStringsByLenghtTest
     {
-        protected readonly WordsDTO WordsDTO;
-        protected readonly MergedWords MergedWords;
+        protected readonly MergeWordsCommand wordsCommand;
+        protected readonly IMergeWordsService _mergeWordsService;
 
-        public MergeStringsByLenghtTest(WordsDTO wordsDTO)
+        public MergeStringsByLenghtTest(MergeWordsCommand wordsDTO)
         {
-            WordsDTO = wordsDTO;
-            MergedWords = new MergedWords();
+            wordsCommand = wordsDTO;
+            _mergeWordsService = new MergeWordsService();
         }
     }
 
 
     public class Merged_String_Equal_Lenght_Test : MergeStringsByLenghtTest
     {
-        public Merged_String_Equal_Lenght_Test() : base(new WordsDTO { Word1 = "abc", Word2 = "pqr" })
+        public Merged_String_Equal_Lenght_Test() : base(new MergeWordsCommand("abc", "pqr" ))
         {
         }
 
         [Fact]
         public void Should_Merge_Equal_Length_Strings()
         {
-            var result = MergedWords.MergeWords(WordsDTO);
+            var result = _mergeWordsService.MergeWords(wordsCommand);
 
             result.MergedWord.Should().BeEquivalentTo("apbqcr");
         }
@@ -68,14 +70,14 @@ namespace LeetCodeWeek47SaturdayChill.Test.UnitTest.ArrayAndStringDataTest.Merge
 
     public class Merged_String_By_Longest_String_Word1 : MergeStringsByLenghtTest
     {
-        public Merged_String_By_Longest_String_Word1() : base(new WordsDTO { Word1 = "ab", Word2 = "pqrs" })
+        public Merged_String_By_Longest_String_Word1() : base(new MergeWordsCommand("ab",  "pqrs"))
         {
         }
 
         [Fact]
         public void Should_Merge_Equal_Length_Strings()
         {
-            var result = MergedWords.MergeWords(WordsDTO);
+            var result = _mergeWordsService.MergeWords(wordsCommand);
 
             result.MergedWord.Should().BeEquivalentTo("apbqrs");
         }
@@ -83,14 +85,14 @@ namespace LeetCodeWeek47SaturdayChill.Test.UnitTest.ArrayAndStringDataTest.Merge
 
     public class Merged_String_By_Longest_String_Word2 : MergeStringsByLenghtTest
     {
-        public Merged_String_By_Longest_String_Word2() : base(new WordsDTO { Word1 = "abcd", Word2 = "pq" })
+        public Merged_String_By_Longest_String_Word2() : base(new MergeWordsCommand ("abcd", "pq"))
         {
         }
 
         [Fact]
         public void Should_Merge_Equal_Length_Strings()
         {
-            var result = MergedWords.MergeWords(WordsDTO);
+            var result = _mergeWordsService.MergeWords(wordsCommand);
 
             result.MergedWord.Should().BeEquivalentTo("apbqcd");
         }

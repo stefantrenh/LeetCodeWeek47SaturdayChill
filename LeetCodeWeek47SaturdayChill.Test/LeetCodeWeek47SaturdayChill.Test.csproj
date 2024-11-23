@@ -100,6 +100,7 @@
     <Compile Include="UnitTest\ArrayAndStringDataTest\MergeStringTest\MergeStringsByLenghtTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -107,13 +108,17 @@
     <Analyzer Include="..\packages\xunit.analyzers.1.16.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LeetCodeWeek47SaturdayChill.API\LeetCodeWeek47SaturdayChill.API.csproj">
+      <Project>{7accb0d6-c605-422d-bd1e-fec346bf8d35}</Project>
+      <Name>LeetCodeWeek47SaturdayChill.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LeetCodeWeek47SaturdayChill.Application\LeetCodeWeek47SaturdayChill.Application.csproj">
+      <Project>{f44f16b2-4f3e-4e21-b624-be0bc831caf3}</Project>
+      <Name>LeetCodeWeek47SaturdayChill.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LeetCodeWeek47SaturdayChill.Domain\LeetCodeWeek47SaturdayChill.Domain.csproj">
       <Project>{b5332260-4006-4d23-b85c-575415a020c3}</Project>
       <Name>LeetCodeWeek47SaturdayChill.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LeetCodeWeek47SaturdayChill\LeetCodeWeek47SaturdayChill.csproj">
-      <Project>{454b8785-e75f-4aa5-8d4f-c783ed049b0f}</Project>
-      <Name>LeetCodeWeek47SaturdayChill</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

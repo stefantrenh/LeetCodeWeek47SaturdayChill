@@ -1,0 +1,77 @@
+﻿@model LeetCodeWeek47SaturdayChill.API.Models.MergeWordsModel
+
+<h2>Merge Words</h2>
+
+
+@using (Html.BeginForm("Index", "Word", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div>
+        <label for="Word1">Word 1:</label>
+        @Html.TextBoxFor(m => m.Word1, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Word1, "", new { @class = "text-danger" })
+    </div>
+    <div>
+        <label for="Word2">Word 2:</label>
+        @Html.TextBoxFor(m => m.Word2, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Word2, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Merge</button>
+}
+
+@if (!string.IsNullOrEmpty(Model.MergedWord))
+{
+    <h3>Merged Word:</h3>
+    <p>@Model.MergedWord</p>
+}
+
+<hr />
+<br />
+<body>
+    <h1>Merge Strings by Alternating Characters</h1>
+    <p>You are given two strings <code>word1</code> and <code>word2</code>. The goal is to merge the strings by adding letters in alternating order, starting with <code>word1</code>.</p>
+    <p>If a string is longer than the other, append the additional letters onto the end of the merged string.</p>
+
+    <h2>Examples</h2>
+
+    <!-- Example 1 -->
+    <div class="example">
+        <h3>Example 1:</h3>
+        <p><strong>Input:</strong> word1 = "abc", word2 = "pqr"</p>
+        <p><strong>Output:</strong> <span class="output">"apbqcr"</span></p>
+        <p><strong>Explanation:</strong> The merged string is formed as follows:</p>
+        <pre>
+word1:  a   b   c
+word2:    p   q   r
+merged: a p b q c r
+        </pre>
+    </div>
+
+    <!-- Example 2 -->
+    <div class="example">
+        <h3>Example 2:</h3>
+        <p><strong>Input:</strong> word1 = "ab", word2 = "pqrs"</p>
+        <p><strong>Output:</strong> <span class="output">"apbqrs"</span></p>
+        <p><strong>Explanation:</strong> Notice that as word2 is longer, "rs" is appended to the end:</p>
+        <pre>
+word1:  a   b
+word2:    p   q   r   s
+merged: a p b q   r   s
+        </pre>
+    </div>
+
+    <!-- Example 3 -->
+    <div class="example">
+        <h3>Example 3:</h3>
+        <p><strong>Input:</strong> word1 = "abcd", word2 = "pq"</p>
+        <p><strong>Output:</strong> <span class="output">"apbqcd"</span></p>
+        <p><strong>Explanation:</strong> Notice that as word1 is longer, "cd" is appended to the end:</p>
+        <pre>
+word1:  a   b   c   d
+word2:    p   q
+merged: a p b q c   d
+        </pre>
+    </div>
+</body>

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LeetCodeWeek47SaturdayChill\LeetCodeWeek47SaturdayChill.csproj" />
+    <ProjectReference Include="..\LeetCodeWeek47SaturdayChill.API\LeetCodeWeek47SaturdayChill.API.csproj" />
   </ItemGroup>
 
 </Project>
